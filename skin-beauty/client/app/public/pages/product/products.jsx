@@ -70,16 +70,43 @@ export const ProductsPage = () => {
   };
 
   const handleFilter = () => {
-    Meteor.call(
-      'filterProducts',
-      selectedCategories,
-      selectedBrands,
-      selectedSkinTypes,
-      (error, result) => {
+
+    const obj = {
+      options: {
+        pagination: {
+          currentPage:1,
+          pageItems:10,
+        },
+        sorting: {
+          sortField: 'name',
+          sortOrder: 'desc',
+        },
+        filtering: {},
+        fields: { imageLink:1 }
+      }
+    }
+
+    if (selectedCategories.length != 0) {
+      obj.options.filtering.categoryId = {$in: selectedCategories}
+    }
+
+    if (selectedBrands.length != 0) {
+      obj.options.filtering.brandId = {$in: selectedBrands}
+    }
+
+    if (selectedSkinTypes.length != 0) {
+      obj.options.filtering.skinTypeId = {$in: selectedSkinTypes}
+    }
+
+    console.log(obj)
+
+    Meteor.call('products.list', obj, (error, result) => {
         if (error) {
           console.log(error);
         } else {
-          setProductCards(result);
+
+          console.log(result);
+          setProductCards(result.products);
           setCurrentPage(1);
         }
       }
@@ -116,12 +143,12 @@ export const ProductsPage = () => {
                   key={category._id}
                   button
                   onClick={() =>
-                    handleCheckboxClick(category.title, "categories")
+                    handleCheckboxClick(category._id, "categories")
                   }
                 >
                   <Checkbox
                     className="checkbox"
-                    checked={selectedCategories.includes(category.title)}
+                    checked={selectedCategories.includes(category._id)}
                   />
                   <Typography variant="body1">{category.title}</Typography>
                 </ListItem>
@@ -141,12 +168,12 @@ export const ProductsPage = () => {
                   key={skinType._id}
                   button
                   onClick={() =>
-                    handleCheckboxClick(skinType.title, "skinTypes")
+                    handleCheckboxClick(skinType._id, "skinTypes")
                   }
                 >
                   <Checkbox
                     className="checkbox"
-                    checked={selectedSkinTypes.includes(skinType.title)}
+                    checked={selectedSkinTypes.includes(skinType._id)}
                   />
                   <Typography variant="body1">{skinType.title}</Typography>
                 </ListItem>
@@ -162,11 +189,11 @@ export const ProductsPage = () => {
               <ListItem
                 key={brand._id}
                 button
-                onClick={() => handleCheckboxClick(brand.title, "brands")}
+                onClick={() => handleCheckboxClick(brand._id, "brands")}
               >
                 <Checkbox
                   className="checkbox"
-                  checked={selectedBrands.includes(brand.title)}
+                  checked={selectedBrands.includes(brand._id)}
                 />
                 <Typography variant="body1">{brand.title}</Typography>
               </ListItem>

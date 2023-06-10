@@ -4,10 +4,12 @@ import SimpleSchema from 'simpl-schema';
 
 ProductSchema = new SimpleSchema({
   name: String,
-  brand: String,
-  category: String,
+
+  brandId: String,
+  categoryId: String,
+  skinTypeId: String,
+
   imageLink: String,
-  skinType: String,
   ingredients: String
 });
 
