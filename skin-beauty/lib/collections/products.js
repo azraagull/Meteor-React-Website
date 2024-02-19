@@ -1,6 +1,6 @@
-import SimpleSchema from 'simpl-schema';
+import SimpleSchema from "simpl-schema";
 
- export const Products = new Mongo.Collection('products');
+export const Products = new Mongo.Collection("products");
 
 ProductSchema = new SimpleSchema({
   name: String,
@@ -10,7 +10,7 @@ ProductSchema = new SimpleSchema({
   skinTypeId: String,
 
   imageLink: String,
-  ingredients: String
+  ingredients: String,
 });
 
 Products.attachSchema(ProductSchema);

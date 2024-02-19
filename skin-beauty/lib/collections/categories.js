@@ -6,7 +6,8 @@ CategorySchema = new SimpleSchema({
   title : String,
   color : String,
   item : String,
-  image : String
+  image : String,
+  updated: Date,
 });
 
 Categories.attachSchema(CategorySchema);

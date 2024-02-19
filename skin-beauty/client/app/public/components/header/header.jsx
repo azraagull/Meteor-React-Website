@@ -8,6 +8,7 @@ export const Header = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
+
     const handleScroll = () => {
       const isScrolled = window.scrollY > 100;
       setScrolled(isScrolled);

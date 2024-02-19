@@ -1,4 +1,5 @@
 import SimpleSchema from 'simpl-schema';
+import { Categories } from '../../../lib/collections/categories';
 
 new ValidatedMethod({
   name: 'category.create',
@@ -8,7 +9,7 @@ new ValidatedMethod({
   run: function(data){
     this.unblock();
     const { category } = data
-    const id = Category.insert(category);
-    return Category.findOne({ _id: id});
+    const id = Categories.insert(category);
+    return Categories.findOne({ _id: id});
   }
 });

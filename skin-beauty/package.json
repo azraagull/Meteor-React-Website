@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.21.5",
+    "@elastic/elasticsearch": "^7.17.13",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",

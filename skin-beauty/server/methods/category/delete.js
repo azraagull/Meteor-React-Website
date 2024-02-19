@@ -1,13 +1,14 @@
 import SimpleSchema from 'simpl-schema';
+import { Categories } from '../../../lib/collections/categories';
 
 new ValidatedMethod({
   name: 'category.delete',
   validate: new SimpleSchema({
-    // _id: SimpleSchema.RegEx.Id
+    _id: String
   }).validator(),
   run: async function (data) {
     this.unblock();
     const { _id } = data;
-    Category.remove({ _id: _id });
+    Categories.remove({ _id: _id });
   }
 });

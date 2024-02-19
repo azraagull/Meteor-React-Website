@@ -98,8 +98,6 @@ export const ProductsPage = () => {
       obj.options.filtering.skinTypeId = {$in: selectedSkinTypes}
     }
 
-    console.log(obj)
-
     Meteor.call('products.list', obj, (error, result) => {
         if (error) {
           console.log(error);
@@ -121,7 +119,6 @@ export const ProductsPage = () => {
     setCurrentPage(1);
   };
 
-  const totalPages = Math.ceil(productCards.length / perPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -220,8 +217,6 @@ export const ProductsPage = () => {
           </Box>
         ))}
         <PaginationComponent
-          totalPages={totalPages}
-          currentPage={currentPage}
           onPageChange={handlePageChange}
         />
       </Box>

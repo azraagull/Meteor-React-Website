@@ -1,4 +1,5 @@
 import SimpleSchema from 'simpl-schema';
+import { Categories } from '../../../lib/collections/categories';
 
 new ValidatedMethod({
   name: 'category.update',
@@ -10,10 +11,10 @@ new ValidatedMethod({
     this.unblock();
     const { _id, category } = data
 
-    const id = Category.update({ _id: _id }, {
+    const id = Categories.update({ _id: _id }, {
       $set: category
     });
 
-    return Category.findOne({ _id: id });
+    return Categories.findOne({ _id: id });
   }
 });
